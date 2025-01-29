@@ -20,6 +20,7 @@ activity = "1.9.3"
 loggingInterceptor = "4.12.0"
 serialization = "1.6.3"
 testCoreKtx = "1.6.1"
+junitVersion = "1.2.1"
 
 [libraries]
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -49,9 +50,11 @@ koin-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", version.ref
 android-test-runner = { group = "androidx.test", name = "runner", version.ref = "test_runner" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 core-ktx-android-test = { group = "androidx.test", name = "core-ktx", version.ref = "testCoreKtx" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-parcelize = { id = "kotlin-parcelize" }
+android-library = { id = "com.android.library", version.ref = "agp" }
