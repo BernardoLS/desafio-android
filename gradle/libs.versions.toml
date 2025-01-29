@@ -1,0 +1,57 @@
+[versions]
+agp = "8.7.3"
+kotlin = "2.0.0"
+coreKtx = '1.13.1'
+appcompat = "1.7.0"
+constraintlayout = '2.2.0'
+material = "1.12.0"
+retrofit = '2.11.0'
+okhttp = '4.12.0'
+circleimageview = '3.1.0'
+junit = '4.13.2'
+mockk = '1.13.4'
+test_runner = '1.6.2'
+espresso = '3.6.1'
+koin = "4.0.2"
+coroutines = "1.10.1"
+picasso = "2.8"
+gson = "2.11.0"
+activity = "1.9.3"
+loggingInterceptor = "4.12.0"
+serialization = "1.6.3"
+testCoreKtx = "1.6.1"
+
+[libraries]
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+constraint-layout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
+circle-image = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview" }
+coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okhttp" }
+square-okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptor" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+
+coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+junit-test = { group = "junit", name = "junit", version.ref = "junit" }
+koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
+koin-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", version.ref = "koin" }
+
+android-test-runner = { group = "androidx.test", name = "runner", version.ref = "test_runner" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+core-ktx-android-test = { group = "androidx.test", name = "core-ktx", version.ref = "testCoreKtx" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-parcelize = { id = "kotlin-parcelize" }
