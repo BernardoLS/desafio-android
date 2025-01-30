@@ -3,11 +3,11 @@
 - Migrar o gradle para .kts para obter mais performance, clareza e segurança com tipagem e erros em 
 tempo de compilação. Usar o versionamento através do version catalog para maior organização.
 - Atualizar e otimizar as dependencias utilizadas no projeto.
-- Migrar a view para viewbinding e passar a utilizar o Single Activity Pattern, deixando o app, mais
-preparado para possivel migração para compose no futuro.
+- Migrar a view para viewbinding e passar a utilizar o Single Activity Pattern, deixando o app 
+preparado para possível migração para compose no futuro.
 - Modularização para ganho de performance e otimização de build, além de maior organização caso o
 projeto cresça.
-- Utilização de Clean Architeture para maior escalabilidade e divisão de responsabilidade do código.
+- Utilização de Clean Architecture para maior escalabilidade e divisão de responsabilidade do código.
 - Utilização de MVI como pattern da camada de Presentation junto com FlowState para gerenciamento 
 de estado
 - Implementar DI utilizando Koin.
