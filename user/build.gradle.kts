@@ -50,9 +50,13 @@ dependencies {
     implementation(libs.coroutine.core)
     implementation(libs.retrofit)
     implementation(libs.gson)
+    implementation(libs.circle.image)
     implementation(libs.koin.core)
     implementation(libs.androidx.room.common)
     implementation(libs.room.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.android)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.constraint.layout)
     ksp(libs.room.compiler)
 }

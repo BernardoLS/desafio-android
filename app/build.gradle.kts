@@ -56,18 +56,5 @@ dependencies {
     implementation(libs.constraint.layout)
     implementation(libs.material)
     implementation(libs.koin.android)
-    implementation(libs.picasso)
-    implementation(libs.circle.image)
     implementation(libs.coroutine.android)
-
-    //unit-test
-    testImplementation(libs.junit.test)
-    testImplementation(libs.coroutine.test)
-    testImplementation(libs.koin.test)
-    testImplementation(libs.koin.junit4)
-
-    //ui-test
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.core.ktx.android.test)
-    androidTestImplementation(platform(libs.android.test.runner))
 }

@@ -34,9 +34,25 @@ android {
 
 dependencies {
     //libs
+    implementation(libs.androidx.appcompat)
+    implementation(libs.constraint.layout)
+    implementation(libs.material)
     implementation(libs.core.ktx)
     implementation(libs.koin.core)
     implementation(libs.coroutine.core)
+    implementation(libs.glide)
+    implementation(libs.circle.image)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.activity)
+
+    //unit-test
+    testImplementation(libs.junit.test)
+    testImplementation(libs.coroutine.test)
+    testImplementation(libs.koin.test)
+    testImplementation(libs.koin.junit4)
+
+    //ui-test
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.core.ktx.android.test)
+    androidTestImplementation(platform(libs.android.test.runner))
 }
