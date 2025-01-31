@@ -53,5 +53,6 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.androidx.room.common)
     implementation(libs.room.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.android)
     ksp(libs.room.compiler)
 }

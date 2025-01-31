@@ -24,6 +24,7 @@ junitVersion = "1.2.1"
 room = "2.6.1"
 ksp = "2.6.1"
 roomCommon = "2.6.1"
+lifecycleViewmodelAndroid = "2.8.7"
 
 [libraries]
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -59,6 +60,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 core-ktx-android-test = { group = "androidx.test", name = "core-ktx", version.ref = "testCoreKtx" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+androidx-lifecycle-viewmodel-android = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-android", version.ref = "lifecycleViewmodelAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
