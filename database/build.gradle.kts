@@ -35,9 +35,17 @@ android {
 dependencies {
     //modules
     implementation(project(":core"))
+    implementation(project(":network"))
+    implementation(project(":database"))
 
     //libs
     implementation(libs.coroutine.core)
     implementation(libs.gson)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.room.runtime)
+    implementation(libs.room.compiler)
+    implementation(libs.room.ktx)
 
+    testImplementation(libs.room.test)
 }

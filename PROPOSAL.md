@@ -8,7 +8,7 @@ preparado para possível migração para compose no futuro.
 - Modularização para ganho de performance e otimização de build, além de maior organização caso o
 projeto cresça.
 - Utilização de Clean Architecture para maior escalabilidade e divisão de responsabilidade do código.
-- Utilização de MVI como pattern da camada de Presentation junto com FlowState para gerenciamento 
+- Utilização de MVI como pattern da camada de Presentation junto com StateFlow para gerenciamento 
 de estado
 - Implementar DI utilizando Koin.
 - Adicionar cobertura de testes unitarios para todos os niveis da arquitetura.

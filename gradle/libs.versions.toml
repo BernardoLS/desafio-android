@@ -21,6 +21,9 @@ loggingInterceptor = "4.12.0"
 serialization = "1.6.3"
 testCoreKtx = "1.6.1"
 junitVersion = "1.2.1"
+room = "2.6.1"
+ksp = "2.6.1"
+roomCommon = "2.6.1"
 
 [libraries]
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -41,16 +44,21 @@ okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver",
 square-okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptor" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
 coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 junit-test = { group = "junit", name = "junit", version.ref = "junit" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 koin-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", version.ref = "koin" }
+room-test = { group = "androidx.room", name = "room-testing", version.ref = "room" }
 
 android-test-runner = { group = "androidx.test", name = "runner", version.ref = "test_runner" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 core-ktx-android-test = { group = "androidx.test", name = "core-ktx", version.ref = "testCoreKtx" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -58,3 +66,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-parcelize = { id = "kotlin-parcelize" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+ksp = { id = "com.google.devtools.ksp" }
