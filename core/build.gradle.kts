@@ -57,6 +57,7 @@ dependencies {
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.junit4)
     testImplementation(libs.mockk)
+    testImplementation(libs.junit.jupiter)
 
     //ui-test
     androidTestImplementation(libs.androidx.espresso.core)
