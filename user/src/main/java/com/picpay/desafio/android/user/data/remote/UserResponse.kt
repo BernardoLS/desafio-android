@@ -11,13 +11,6 @@ data class UserResponse(
     @SerializedName("img") val img: String
 )
 
-fun UserResponse.toEntity() = UserEntity(
-    id = id,
-    name = name,
-    img = img,
-    username = username
-)
-
 fun UserResponse.toModel() = UserModel(
     id = id,
     name = name,

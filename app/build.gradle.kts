@@ -5,6 +5,8 @@ plugins {
 }
 
 android {
+
+
     namespace = "com.picpay.desafio.android"
     compileSdk = 34
 
@@ -16,17 +18,17 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL", "https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/")
+
     }
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/")
+            buildConfigField("String", "BASE_URL", "\"https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/\"")
         }
 
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            buildConfigField("String", "BASE_URL", "https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/")
+            buildConfigField("String", "BASE_URL", "\"https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -42,9 +44,15 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         viewBinding = true
         buildConfig = true
+    }
+
+    configurations {
+        create("cleanedAnnotations")
+        getByName("implementation").exclude(group = "org.jetbrains", module = "annotations")
     }
 
 }
@@ -55,6 +63,13 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":database"))
     implementation(project(":user"))
+
+    implementation(libs.annotations)
+    constraints {
+        implementation("com.intellij:annotations:12.0") {
+            because( "Evitar conflito com org.jetbrains:annotations")
+        }
+    }
 
     //libs
     implementation(libs.androidx.appcompat)

@@ -36,7 +36,6 @@ dependencies {
     //modules
     implementation(project(":core"))
     implementation(project(":network"))
-    implementation(project(":database"))
 
     //libs
     implementation(libs.coroutine.core)

@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.koin.core)
     implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
     implementation(libs.androidx.room.common)
     implementation(libs.room.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.android)

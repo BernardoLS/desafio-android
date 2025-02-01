@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val getUsersUseCase: FetchUserListUseCase) : ViewModel() {
-    private val _users = MutableStateFlow<UserState>(UserState.Empty)
-    val usersState: StateFlow<UserState> = _users
+    private val _usersState = MutableStateFlow<UserState>(UserState.Empty)
+    val usersState: StateFlow<UserState> = _usersState
 
     private val intentChannel = Channel<UserListIntents>(Channel.UNLIMITED)
 
@@ -22,11 +22,14 @@ class UserViewModel(private val getUsersUseCase: FetchUserListUseCase) : ViewMod
     }
 
     private fun fetchUsers() {
+        _usersState.value = UserState.Loading
+
         viewModelScope.launch {
-            _users.value = UserState.Loading
             getUsersUseCase()
-                .catch { cause -> _users.value = UserState.Error(cause.message ?: "") }
-                .collect { users -> _users.value = UserState.Success(users) }
+                .catch { cause -> _usersState.value = UserState.Error(cause.message ?: "") }
+                .collect {
+                    users -> _usersState.value = UserState.Success(users)
+                }
         }
     }
 
@@ -38,6 +41,12 @@ class UserViewModel(private val getUsersUseCase: FetchUserListUseCase) : ViewMod
                 }
             }
 
+        }
+    }
+
+    fun sendIntent(intent: UserListIntents) {
+        viewModelScope.launch {
+            intentChannel.send(intent)
         }
     }
 }

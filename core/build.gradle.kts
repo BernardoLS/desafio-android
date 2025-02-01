@@ -47,15 +47,20 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.activity)
+    implementation(libs.koin.android)
+    implementation(libs.koin.viewmodel)
+
 
     //unit-test
     testImplementation(libs.junit.test)
     testImplementation(libs.coroutine.test)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.junit4)
+    testImplementation(libs.mockk)
 
     //ui-test
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.core.ktx.android.test)
+    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(platform(libs.android.test.runner))
 }

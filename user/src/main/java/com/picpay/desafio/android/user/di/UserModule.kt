@@ -9,6 +9,7 @@ import com.picpay.desafio.android.user.data.local.UserLocalDataSource
 import com.picpay.desafio.android.user.data.remote.UserApiService
 import com.picpay.desafio.android.user.data.remote.UserRemoteDataSource
 import com.picpay.desafio.android.user.domain.FetchUserListUseCase
+import com.picpay.desafio.android.user.domain.UserRepositoryInterface
 import com.picpay.desafio.android.user.presentation.view.UserViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
@@ -24,8 +25,8 @@ val userModule = module {
     single { get<UserDatabase>().userDao() }
     single { UserLocalDataSource(get()) }
     single { UserRemoteDataSource(get()) }
-    single { UserRepository(get(), get()) }
-    single { FetchUserListUseCase(get()) }
+    single<UserRepositoryInterface> { UserRepository(get(), get()) }
+    factory { FetchUserListUseCase(get()) }
     viewModel { UserViewModel(get()) }
 }
 

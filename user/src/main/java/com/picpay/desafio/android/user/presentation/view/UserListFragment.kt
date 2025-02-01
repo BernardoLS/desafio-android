@@ -6,22 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.picpay.desafio.android.core.extensions.gone
 import com.picpay.desafio.android.core.extensions.visible
 import com.picpay.desafio.android.user.databinding.FragmentUserListBinding
+import com.picpay.desafio.android.user.presentation.intents.UserListIntents
 import com.picpay.desafio.android.user.presentation.view.adpter.UserListAdapter
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserListFragment : Fragment() {
 
     private var _binding: FragmentUserListBinding? = null
-    private val binding: FragmentUserListBinding = _binding!!
+    private val binding: FragmentUserListBinding
+        get() = _binding ?: throw IllegalStateException("Binding is null")
 
     private val userListAdapter: UserListAdapter by lazy { UserListAdapter() }
 
-    private val viewModel: UserViewModel by viewModels()
+    private val viewModel: UserViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +41,7 @@ class UserListFragment : Fragment() {
 
         setUpAdapter()
         setUpStateObserver()
-
+        viewModel.sendIntent(UserListIntents.LoadUsers)
     }
 
     private fun setUpAdapter() {
@@ -45,16 +50,20 @@ class UserListFragment : Fragment() {
     }
 
     private fun setUpStateObserver() {
-        viewModel.usersState.onEach { state ->
-            when (state) {
-                is UserState.Loading, UserState.Empty -> binding.userListProgressBar.visible()
-                is UserState.Success -> {
-                    state.users.let(userListAdapter::updateUserList)
-                    binding.userListProgressBar.gone()
-                }
-                is UserState.Error -> {
-                    binding.userListProgressBar.gone()
-                    showError(state.message)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.usersState.collect { state ->
+                when (state) {
+                    is UserState.Loading, UserState.Empty -> binding.userListProgressBar.visible()
+
+
+                    is UserState.Success -> {
+                        userListAdapter.updateUserList(state.users)
+                        binding.userListProgressBar.gone()
+                    }
+                    is UserState.Error -> {
+                        binding.userListProgressBar.gone()
+                        showError(state.message)
+                    }
                 }
             }
         }
@@ -67,5 +76,9 @@ class UserListFragment : Fragment() {
 
     private fun showError(error: String) {
         Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        fun newInstance() = UserListFragment()
     }
 }

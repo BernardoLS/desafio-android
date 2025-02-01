@@ -3,8 +3,10 @@ package com.picpay.desafio.android.user.domain
 import com.picpay.desafio.android.core.utils.ResultHandler
 import com.picpay.desafio.android.core.utils.safeApiRequest
 import com.picpay.desafio.android.user.presentation.model.UserModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 class FetchUserListUseCase(private val repository: UserRepositoryInterface) {
     operator fun invoke(): Flow<List<UserModel>> = flow {
@@ -27,6 +29,5 @@ class FetchUserListUseCase(private val repository: UserRepositoryInterface) {
         } catch(e: Exception) {
             throw e
         }
-
-    }
+    }.flowOn(Dispatchers.IO)
 }

@@ -26,9 +26,8 @@ class UserListAdapter(
         val diffCallback = DiffUtil.calculateDiff(UserListDiffCallback(userList, newUserList))
 
         userList.clear()
-        userList.addAll(userList)
+        userList.addAll(newUserList)
 
         diffCallback.dispatchUpdatesTo(this)
     }
-
 }
