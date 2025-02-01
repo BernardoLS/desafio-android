@@ -13,8 +13,6 @@ import com.picpay.desafio.android.core.extensions.visible
 import com.picpay.desafio.android.user.databinding.FragmentUserListBinding
 import com.picpay.desafio.android.user.presentation.intents.UserListIntents
 import com.picpay.desafio.android.user.presentation.view.adpter.UserListAdapter
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
