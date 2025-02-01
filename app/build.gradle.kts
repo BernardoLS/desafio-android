@@ -16,9 +16,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/")
     }
     buildTypes {
-        debug {}
+        debug {
+            buildConfigField("String", "BASE_URL", "https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/")
+        }
 
         release {
             isMinifyEnabled = true
@@ -41,6 +44,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
 }

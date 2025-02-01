@@ -54,7 +54,6 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.gson)
     implementation(libs.glide)
-    implementation(libs.circle.image)
     implementation(libs.koin.core)
     implementation(libs.koin.android)
     implementation(libs.androidx.room.common)

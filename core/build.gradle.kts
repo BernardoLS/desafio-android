@@ -45,7 +45,6 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.coroutine.core)
     implementation(libs.glide)
-    implementation(libs.circle.image)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.activity)
 
