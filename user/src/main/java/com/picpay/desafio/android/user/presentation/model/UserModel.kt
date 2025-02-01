@@ -10,14 +10,5 @@ data class UserModel(
     val name: String,
     val username: String,
     val img: String
-) : Parcelable {
-    fun toEntity(): UserEntity {
-        return UserEntity(
-            id = id,
-            name = name,
-            username = username,
-            img = img
-        )
-    }
-}
+) : Parcelable
 

@@ -20,10 +20,3 @@ data class UserEntity(
     @ColumnInfo(name = "username")
     val username: String
 )
-
-fun UserEntity.toModel() = UserModel(
-    id = id,
-    name = name,
-    img = img,
-    username = username
-)

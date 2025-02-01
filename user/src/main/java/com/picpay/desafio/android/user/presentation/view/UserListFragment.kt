@@ -12,7 +12,7 @@ import com.picpay.desafio.android.core.extensions.gone
 import com.picpay.desafio.android.core.extensions.visible
 import com.picpay.desafio.android.user.databinding.FragmentUserListBinding
 import com.picpay.desafio.android.user.presentation.intents.UserListIntents
-import com.picpay.desafio.android.user.presentation.view.adpter.UserListAdapter
+import com.picpay.desafio.android.user.presentation.view.adapter.UserListAdapter
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

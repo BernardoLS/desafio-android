@@ -22,11 +22,11 @@ val userModule = module {
         )
     }
 
-    single { get<UserDatabase>().userDao() }
-    single { UserLocalDataSource(get()) }
-    single { UserRemoteDataSource(get()) }
-    single<UserRepositoryInterface> { UserRepository(get(), get()) }
-    factory { FetchUserListUseCase(get()) }
+    factory { get<UserDatabase>().userDao() }
+    factory { UserLocalDataSource(get()) }
+    factory { UserRemoteDataSource(get()) }
+    factory<UserRepositoryInterface> { UserRepository(get(), get()) }
+    factory { FetchUserListUseCase(get(), get()) }
     viewModel { UserViewModel(get()) }
 }
 
