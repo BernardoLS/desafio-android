@@ -63,5 +63,6 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.recyclerview)
     implementation(libs.constraint.layout)
+    implementation(libs.swipe.refresh)
     ksp(libs.room.compiler)
 }

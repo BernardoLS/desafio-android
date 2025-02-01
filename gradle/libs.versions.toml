@@ -26,7 +26,7 @@ roomCommon = "2.6.1"
 lifecycleViewmodelAndroid = "2.8.7"
 fragmentKtx = "1.8.5"
 recyclerview = "1.3.2"
-koinViewModel = "3.4.3"
+swipeRefresh = "1.1.0"
 
 [libraries]
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -51,8 +51,9 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
-mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+swipe-refresh = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swipeRefresh" }
 
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 junit-test = { group = "junit", name = "junit", version.ref = "junit" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }

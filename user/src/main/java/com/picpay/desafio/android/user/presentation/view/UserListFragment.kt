@@ -41,6 +41,7 @@ class UserListFragment : Fragment() {
 
         setUpAdapter()
         setUpStateObserver()
+        setUpRefresh()
         viewModel.sendIntent(UserListIntents.LoadUsers)
     }
 
@@ -55,7 +56,6 @@ class UserListFragment : Fragment() {
                 when (state) {
                     is UserState.Loading, UserState.Empty -> binding.userListProgressBar.visible()
 
-
                     is UserState.Success -> {
                         userListAdapter.updateUserList(state.users)
                         binding.userListProgressBar.gone()
@@ -65,6 +65,8 @@ class UserListFragment : Fragment() {
                         showError(state.message)
                     }
                 }
+
+                binding.swipeRefresh.isRefreshing = false
             }
         }
     }
@@ -76,6 +78,12 @@ class UserListFragment : Fragment() {
 
     private fun showError(error: String) {
         Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setUpRefresh() {
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.sendIntent(UserListIntents.LoadUsers)
+        }
     }
 
     companion object {
