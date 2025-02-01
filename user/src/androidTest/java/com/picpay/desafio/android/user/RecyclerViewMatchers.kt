@@ -1,4 +1,4 @@
-package com.picpay.desafio.android
+package com.picpay.desafio.android.user
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -7,13 +7,12 @@ import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers
 import org.hamcrest.Description
-import org.hamcrest.Matcher
 
 object RecyclerViewMatchers {
 
-    fun atPosition(
+    private fun atPosition(
         position: Int,
-        itemMatcher: Matcher<View>
+        itemMatcher: org.hamcrest.Matcher<View>
     ) = object : BoundedMatcher<View, RecyclerView>(RecyclerView::class.java) {
         override fun describeTo(description: Description?) {
             description?.appendText("has item at position $position: ")
@@ -26,7 +25,7 @@ object RecyclerViewMatchers {
         }
     }
 
-    fun checkRecyclerViewItem(resId: Int, position: Int, withMatcher: Matcher<View>) {
+    fun checkRecyclerViewItem(resId: Int, position: Int, withMatcher: org.hamcrest.Matcher<View>) {
         Espresso.onView(ViewMatchers.withId(resId)).check(
             ViewAssertions.matches(
                 atPosition(

@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.picpay.desafio.android.network"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -30,12 +30,23 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    configurations {
+        create("cleanedAnnotations")
+        getByName("implementation").exclude(group = "org.jetbrains", module = "annotations")
+    }
 }
 
 dependencies {
     //modules
     implementation(project(":core"))
 
+
+    implementation(libs.annotations)
+    constraints {
+        implementation("com.intellij:annotations:12.0") {
+            because("Evitar conflito com org.jetbrains:annotations")
+        }
+    }
     //libs
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
@@ -45,4 +56,9 @@ dependencies {
     implementation(libs.coroutine.core)
     implementation(libs.kotlinx.serialization.json)
 
+    testImplementation(libs.junit)
+    testImplementation(libs.slf4j)
+    testImplementation(libs.coroutine.test)
+    testImplementation(libs.koin.junit4)
+    testImplementation(libs.mockk)
 }

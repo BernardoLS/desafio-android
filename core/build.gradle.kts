@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.picpay.desafio.android.core"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -34,6 +34,10 @@ android {
     buildFeatures {
         androidResources = true
     }
+    configurations {
+        create("cleanedAnnotations")
+        getByName("implementation").exclude(group = "org.jetbrains", module = "annotations")
+    }
 }
 
 dependencies {
@@ -49,10 +53,15 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.koin.android)
     implementation(libs.koin.viewmodel)
+    implementation(libs.timber)
 
-
+    implementation(libs.annotations)
+    constraints {
+        implementation("com.intellij:annotations:12.0") {
+            because("Evitar conflito com org.jetbrains:annotations")
+        }
+    }
     //unit-test
-    testImplementation(libs.junit.test)
     testImplementation(libs.coroutine.test)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.junit4)

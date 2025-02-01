@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.picpay.desafio.android.user"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -64,5 +64,12 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.constraint.layout)
     implementation(libs.swipe.refresh)
+    implementation(libs.androidx.espresso.core)
     ksp(libs.room.compiler)
+
+
+    testImplementation(libs.junit)
+    testImplementation(libs.coroutine.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.junit.jupiter)
 }

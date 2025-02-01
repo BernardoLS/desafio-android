@@ -9,10 +9,3 @@ data class UserResponse(
     @SerializedName("username") val username: String,
     @SerializedName("img") val img: String
 )
-
-fun UserResponse.toModel() = UserModel(
-    id = id,
-    name = name,
-    img = img,
-    username = username
-)
