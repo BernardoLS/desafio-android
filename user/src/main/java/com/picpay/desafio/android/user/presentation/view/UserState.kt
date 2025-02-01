@@ -1,4 +1,6 @@
-package com.picpay.desafio.android.user.presentation.model
+package com.picpay.desafio.android.user.presentation.view
+
+import com.picpay.desafio.android.user.presentation.model.UserModel
 
 interface UserState {
     object Loading : UserState

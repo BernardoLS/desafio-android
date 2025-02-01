@@ -3,7 +3,7 @@ package com.picpay.desafio.android.network.retrofit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
-internal object ClientInterceptor {
+object ClientInterceptor {
     fun buildClient() = OkHttpClient
         .Builder()
         .addInterceptor(setUpLoggingLevel())
