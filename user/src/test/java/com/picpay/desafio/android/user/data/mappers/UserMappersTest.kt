@@ -46,7 +46,7 @@ class UserMappersTest {
 
     @Test
     fun `when call toModel from UserResponse should return UserModel correctly`() {
-        val userEntity = UserResponse(
+        val userResponse = UserResponse(
             id = 1,
             img = "img",
             name = "name",
@@ -59,6 +59,24 @@ class UserMappersTest {
             username = "username"
         )
 
-        Assert.assertEquals(userModel, userEntity.toModel())
+        Assert.assertEquals(userModel, userResponse.toModel())
+    }
+
+    @Test
+    fun `when call toResponse from UserModel should return UserResponse correctly`() {
+        val userResponse = UserResponse(
+            id = 1,
+            img = "img",
+            name = "name",
+            username = "username"
+        )
+        val userModel = UserModel(
+            id = 1,
+            img = "img",
+            name = "name",
+            username = "username"
+        )
+
+        Assert.assertEquals(userResponse, userModel.toResponse())
     }
 }

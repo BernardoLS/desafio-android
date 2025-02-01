@@ -3,6 +3,7 @@ package com.picpay.desafio.android.user.domain
 import com.picpay.desafio.android.core.logger.AppLogger
 import com.picpay.desafio.android.core.utils.ResultHandler
 import com.picpay.desafio.android.core.utils.safeApiRequest
+import com.picpay.desafio.android.user.data.mappers.toModel
 import com.picpay.desafio.android.user.presentation.model.UserModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -20,8 +21,7 @@ class FetchUserListUseCase(
             val localUsers = repository.fetchLocalUsers()
             emit(localUsers)
 
-            val remoteUsersResponse = safeApiRequest { repository.fetchRemoteUsers() }
-            when(remoteUsersResponse) {
+            when(val remoteUsersResponse = repository.fetchRemoteUsers()) {
                 is ResultHandler.Error -> {
                     logger.logError(
                         remoteUsersResponse.throwable.message ?:  "Error fetching remote users",
@@ -30,7 +30,7 @@ class FetchUserListUseCase(
                     throw remoteUsersResponse.throwable
                 }
                 is ResultHandler.Success -> {
-                    val remoteUsers = remoteUsersResponse.data
+                    val remoteUsers = remoteUsersResponse.data.map { it.toModel() }
                     if (localUsers != remoteUsers) {
                         repository.insertUsers(remoteUsers)
                         emit(remoteUsers)

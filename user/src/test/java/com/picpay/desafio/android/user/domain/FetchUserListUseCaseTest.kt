@@ -2,6 +2,9 @@ package com.picpay.desafio.android.user.domain
 
 import com.picpay.desafio.android.core.logger.AppLogger
 import com.picpay.desafio.android.core.utils.ResultHandler
+import com.picpay.desafio.android.user.data.mappers.toModel
+import com.picpay.desafio.android.user.data.mappers.toResponse
+import com.picpay.desafio.android.user.data.remote.UserResponse
 import com.picpay.desafio.android.user.presentation.model.UserModel
 import io.mockk.Runs
 import io.mockk.coEvery
@@ -52,7 +55,7 @@ class FetchUserListUseCaseTest {
         // Given
         val localUsers = listOf(UserModel(id = 1, name = "Local User", username = "localuser", img = "img"))
         coEvery { mockRepository.fetchLocalUsers() } returns localUsers
-        coEvery { mockRepository.fetchRemoteUsers() } returns ResultHandler.Success(localUsers).data
+        coEvery { mockRepository.fetchRemoteUsers() } returns ResultHandler.Success(localUsers.map { it.toResponse() })
 
         // When
         val result = sut().toList()
@@ -69,20 +72,20 @@ class FetchUserListUseCaseTest {
     fun `should emit local users and then remote users when different`() = runTest(testDispatcher) {
         // Given
         val localUsers = listOf(UserModel(id = 1, name = "Local User", username = "localuser", img = "img"))
-        val remoteUsers = listOf(UserModel(id = 1, name = "Remote User", username = "remoteuser", img = "img"))
+        val remoteUsers = listOf(UserResponse(id = 1, name = "Remote User", username = "remoteuser", img = "img"))
 
         coEvery { mockRepository.fetchLocalUsers() } returns localUsers
-        coEvery { mockRepository.fetchRemoteUsers() } returns ResultHandler.Success(remoteUsers).data
-        coEvery { mockRepository.insertUsers(remoteUsers) } just Runs
+        coEvery { mockRepository.fetchRemoteUsers() } returns ResultHandler.Success(remoteUsers)
+        coEvery { mockRepository.insertUsers(remoteUsers.map { it.toModel() }) } just Runs
 
         // When
         val result = sut().toList()
 
         // Then
-        assertEquals(listOf(localUsers, remoteUsers), result)
+        assertEquals(listOf(localUsers, remoteUsers.map { it.toModel() }), result)
         coVerify { mockRepository.fetchLocalUsers() }
         coVerify { mockRepository.fetchRemoteUsers() }
-        coVerify { mockRepository.insertUsers(remoteUsers) }
+        coVerify { mockRepository.insertUsers(remoteUsers.map { it.toModel() }) }
     }
 
     @Test
@@ -99,6 +102,6 @@ class FetchUserListUseCaseTest {
 
         // Then
         assertEquals(listOf(localUsers), result)
-        coVerify { mockLogger.logError("Network error", exception) }
+        coVerify { mockLogger.logError("Network error", exception.cause) }
     }
 }

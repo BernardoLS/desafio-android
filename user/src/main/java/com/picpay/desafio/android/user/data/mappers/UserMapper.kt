@@ -26,3 +26,12 @@ fun UserModel.toEntity(): UserEntity {
         img = img
     )
 }
+
+fun UserModel.toResponse(): UserResponse {
+    return UserResponse(
+        id = id,
+        name = name,
+        username = username,
+        img = img
+    )
+}
