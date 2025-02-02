@@ -40,15 +40,13 @@ android {
 
 dependencies {
     //modules
-    implementation(project(":core"))
-    implementation(project(":network"))
-
-    implementation(libs.annotations)
-    constraints {
-        implementation("com.intellij:annotations:12.0") {
-            because("Evitar conflito com org.jetbrains:annotations")
+    configurations {
+        all {
+            exclude(group = "com.intellij", module = "annotations")
         }
     }
+    implementation(project(":core"))
+    implementation(project(":network"))
 
     //libs
     implementation(libs.coroutine.core)
@@ -56,10 +54,15 @@ dependencies {
     implementation(libs.room.compiler)
     implementation(libs.room.ktx)
 
+    //ui-test
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.core.ktx.android.test)
+    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.room.test)
-    androidTestImplementation(libs.junit.jupiter)
     androidTestImplementation(libs.androidx.junit.ktx)
     androidTestImplementation(libs.android.test.runner)
     androidTestImplementation(libs.androidx.arch.core.testing)
+    androidTestImplementation(libs.coroutine.test)
+    androidTestImplementation(platform(libs.android.test.runner))
 
 }

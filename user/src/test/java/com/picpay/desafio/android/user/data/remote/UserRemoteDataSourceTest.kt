@@ -19,10 +19,6 @@ class UserRemoteDataSourceTest {
         sut = UserRemoteDataSource(mockApi)
     }
 
-    @After
-    fun tearDown() {
-    }
-
     @Test
     fun `when fetch users with success should return UserResponse list`() = runTest {
         val response = listOf(UserResponse(id = 1, name = "User", username = "user", img = "img"))
@@ -37,7 +33,7 @@ class UserRemoteDataSourceTest {
     }
 
     @Test
-    fun `when fetch users wth error should throw an exception`() = runTest {
+    fun `when fetch users with error should throw an exception`() = runTest {
         val throwable = RuntimeException("Network error")
 
         coEvery { mockApi.fetchUsers() } throws throwable

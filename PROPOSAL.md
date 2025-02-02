@@ -13,14 +13,7 @@ de estado
 - Implementar DI utilizando Koin.
 - Adicionar cobertura de testes unitarios para todos os niveis da arquitetura.
 - Adicionar testes instrumentados para assegurar que as views estão funcionando corretamente
-- Utilizar padrão Network first, para cache persistente
+- Utilizar padrão Offline first, para cache persistente
 
 ## **Etapas**
-
-- Criar estrutura da clean Architecture;
-- Implementar módulo de network e core;
-- Implementar módulo de usuário;
-- Implementar testes unitários paras os modulos
-- Migrar view para Single Activity Pattern;
-- Implementar cache e testes para cache
 - Implementar teste instrumentado

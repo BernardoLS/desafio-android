@@ -8,6 +8,7 @@ import com.picpay.desafio.android.user.presentation.model.UserModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
@@ -17,29 +18,26 @@ class FetchUserListUseCase(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
     operator fun invoke(): Flow<List<UserModel>> = flow {
-        try  {
-            val localUsers = repository.fetchLocalUsers()
-            emit(localUsers)
+        val localUsers = repository.fetchLocalUsers()
+        emit(localUsers)
 
-            when(val remoteUsersResponse = repository.fetchRemoteUsers()) {
-                is ResultHandler.Error -> {
-                    logger.logError(
-                        remoteUsersResponse.throwable.message ?:  "Error fetching remote users",
-                        remoteUsersResponse.throwable
-                    )
-                    throw remoteUsersResponse.throwable
-                }
-                is ResultHandler.Success -> {
-                    val remoteUsers = remoteUsersResponse.data.map { it.toModel() }
-                    if (localUsers != remoteUsers) {
-                        repository.insertUsers(remoteUsers)
-                        emit(remoteUsers)
-                    }
+        when(val remoteUsersResponse = repository.fetchRemoteUsers()) {
+            is ResultHandler.Error -> {
+                logger.logError(
+                    remoteUsersResponse.throwable.message ?:  "Error fetching remote users",
+                    remoteUsersResponse.throwable
+                )
+                throw remoteUsersResponse.throwable
+            }
+            is ResultHandler.Success -> {
+                val remoteUsers = remoteUsersResponse.data.map { it.toModel() }
+                if (localUsers != remoteUsers) {
+                    repository.insertUsers(remoteUsers)
+                    emit(remoteUsers)
                 }
             }
-
-        } catch(e: Exception) {
-            logger.logError(e.message ?: "Error fetching users", e.cause)
         }
+    }.catch { error ->
+        logger.logError(error.message ?: "Error fetching users", error.cause)
     }.flowOn(dispatcher)
 }

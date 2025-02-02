@@ -15,7 +15,13 @@ class UserRepository(
 ) : UserRepositoryInterface {
     override suspend fun fetchRemoteUsers(): ResultHandler<List<UserResponse>> = remoteDataSource.fetchUsers()
 
-    override suspend fun fetchLocalUsers(): List<UserModel> = localDataSource.fetchUsers().map { it.toModel() }
+    override suspend fun fetchLocalUsers(): List<UserModel> {
+        return try {
+            localDataSource.fetchUsers().map { it.toModel() }
+        } catch (e: Exception) {
+            arrayListOf()
+        }
+    }
 
     override suspend fun insertUsers(users: List<UserModel>) {
         val entities = users.map { it.toEntity() }
