@@ -74,7 +74,7 @@ class UserListFragment : Fragment() {
 
     private fun bindSuccessState(users: List<UserModel>) {
         userListAdapter.updateUserList(users)
-        binding.recyclerUserList.gone()
+        binding.recyclerUserList.visible()
         binding.userListProgressBar.gone()
     }
 
