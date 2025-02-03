@@ -15,7 +15,7 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 val userModule = module {
-    single {
+    factory {
         AppDatabase.getInstance<UserDatabase>(
             context = get(),
             databaseName = "user_database"
