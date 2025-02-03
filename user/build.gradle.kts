@@ -1,3 +1,5 @@
+import com.android.kotlin.multiplatform.ide.models.serialization.androidTargetKey
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -11,9 +13,15 @@ android {
 
     defaultConfig {
         minSdk = 24
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+    }
+
+    packaging {
+        resources {
+            excludes += "META-INF/LICENSE.md"
+            excludes += "META-INF/LICENSE-notice.md"
+        }
     }
 
     ksp {
@@ -65,11 +73,18 @@ dependencies {
     implementation(libs.constraint.layout)
     implementation(libs.swipe.refresh)
     implementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.junit.ktx)
+    androidTestImplementation(libs.androidx.arch.core.testing)
     ksp(libs.room.compiler)
 
 
     testImplementation(libs.junit)
     testImplementation(libs.coroutine.test)
     testImplementation(libs.mockk)
-    testImplementation(libs.junit.jupiter)
+
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.koin.test)
+    androidTestImplementation(libs.coroutine.test)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.fragment.test)
 }

@@ -75,7 +75,7 @@ class UserListFragment : Fragment() {
     }
 
     private fun showError(error: String) {
-        Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
     }
 
     private fun setUpRefresh() {

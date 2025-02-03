@@ -1,7 +1,7 @@
 package com.picpay.desafio.android.core.utils
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.*
 
 class ResultHandlerTest {
     @Test

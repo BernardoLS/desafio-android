@@ -17,7 +17,6 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.jupiter.api.Assertions.assertTrue
 
 
 class UserRepositoryTest {
