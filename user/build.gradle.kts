@@ -72,9 +72,7 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.constraint.layout)
     implementation(libs.swipe.refresh)
-    implementation(libs.androidx.espresso.core)
-    implementation(libs.androidx.junit.ktx)
-    androidTestImplementation(libs.androidx.arch.core.testing)
+    implementation(libs.material)
     ksp(libs.room.compiler)
 
 
@@ -87,4 +85,7 @@ dependencies {
     androidTestImplementation(libs.coroutine.test)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.fragment.test)
+    androidTestImplementation(libs.androidx.arch.core.testing)
+    androidTestImplementation(libs.androidx.junit.ktx)
+
 }

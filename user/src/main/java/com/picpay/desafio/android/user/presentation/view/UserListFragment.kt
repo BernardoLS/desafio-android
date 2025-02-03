@@ -12,6 +12,7 @@ import com.picpay.desafio.android.core.extensions.gone
 import com.picpay.desafio.android.core.extensions.visible
 import com.picpay.desafio.android.user.databinding.FragmentUserListBinding
 import com.picpay.desafio.android.user.presentation.intents.UserListIntents
+import com.picpay.desafio.android.user.presentation.model.UserModel
 import com.picpay.desafio.android.user.presentation.view.adapter.UserListAdapter
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,14 +55,11 @@ class UserListFragment : Fragment() {
                 when (state) {
                     is UserState.Loading, UserState.Empty -> binding.userListProgressBar.visible()
 
-                    is UserState.Success -> {
-                        userListAdapter.updateUserList(state.users)
-                        binding.userListProgressBar.gone()
-                    }
-                    is UserState.Error -> {
-                        binding.userListProgressBar.gone()
-                        showError(state.message)
-                    }
+                    is UserState.Success -> bindSuccessState(state.users)
+
+
+                    is UserState.Error -> bindErrorState(state.message)
+
                 }
 
                 binding.swipeRefresh.isRefreshing = false
@@ -74,8 +72,22 @@ class UserListFragment : Fragment() {
         _binding = null
     }
 
-    private fun showError(error: String) {
-        Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show()
+    private fun bindSuccessState(users: List<UserModel>) {
+        userListAdapter.updateUserList(users)
+        binding.recyclerUserList.gone()
+        binding.userListProgressBar.gone()
+    }
+
+    private fun bindErrorState(error: String) {
+        binding.userListProgressBar.gone()
+        binding.recyclerUserList.gone()
+        binding.tvErrorMessage.text = error
+
+        binding.constraintErrorState.visible()
+
+        binding.btnPill.setOnClickListener {
+            viewModel.sendIntent(UserListIntents.LoadUsers)
+        }
     }
 
     private fun setUpRefresh() {

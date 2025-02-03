@@ -3,6 +3,7 @@ package com.picpay.desafio.android.user
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -16,6 +17,7 @@ import com.picpay.desafio.android.user.presentation.view.UserState
 import com.picpay.desafio.android.user.presentation.view.UserViewModel
 import io.mockk.Runs
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.just
 import io.mockk.mockk
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -71,6 +73,31 @@ class UserListFragmentTest : KoinTest {
         onView(withId(R.id.iv_circle_avatar)).check(matches(isDisplayed()))
     }
 
+    @Test
+    fun shouldDisplayErrorStateWhenUserStateIsError() = runTest {
+        val mockState = MutableStateFlow(UserState.Error("Error"))
+
+        coEvery { mockViewModel.usersState } returns mockState
+        coEvery { mockViewModel.sendIntent(UserListIntents.LoadUsers) } just Runs
+
+        launchFragmentInContainer<UserListFragment>(themeResId = com.google.android.material.R.style.Theme_AppCompat)
+
+        onView(withId(R.id.constraint_error_state)).check(matches(isDisplayed()))
+        onView(withText("Error")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun whenErrorStateButtonIsTappedShouldCallLoadUsersIntent() = runTest {
+        val mockState = MutableStateFlow(UserState.Error("Error"))
+        coEvery { mockViewModel.usersState } returns mockState
+        coEvery { mockViewModel.sendIntent(UserListIntents.LoadUsers) } just Runs
+
+        launchFragmentInContainer<UserListFragment>(themeResId = com.google.android.material.R.style.Theme_AppCompat)
+
+        onView(withId(R.id.btn_pill)).perform(click())
+
+        coVerify { mockViewModel.sendIntent(UserListIntents.LoadUsers) }
+    }
 
     @Test
     fun shouldDisplayLoadingWhenUserStateIsLoading() = runTest {
