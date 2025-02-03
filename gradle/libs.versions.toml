@@ -1,34 +1,47 @@
 [versions]
 agp = "8.7.3"
-kotlin = "2.0.0"
-coreKtx = '1.13.1'
+annotations = "23.0.0"
+kotlin = "2.0.21"
+coreKtx = '1.15.0'
 appcompat = "1.7.0"
 constraintlayout = '2.2.0'
 material = "1.12.0"
 retrofit = '2.11.0'
 okhttp = '4.12.0'
-circleimageview = '3.1.0'
-junit = '4.13.2'
-mockk = '1.13.4'
+mockk = '1.13.8'
 test_runner = '1.6.2'
 espresso = '3.6.1'
 koin = "4.0.2"
 coroutines = "1.10.1"
-picasso = "2.8"
+glide = "4.12.0"
 gson = "2.11.0"
-activity = "1.9.3"
+activity = "1.10.0"
 loggingInterceptor = "4.12.0"
 serialization = "1.6.3"
 testCoreKtx = "1.6.1"
+junitVersion = "1.2.1"
+room = "2.6.1"
+roomCommon = "2.6.1"
+lifecycleViewmodelAndroid = "2.8.7"
+fragmentKtx = "1.8.5"
+recyclerview = "1.4.0"
+swipeRefresh = "1.1.0"
+junitKtx = "1.2.1"
+androidxArchCore = "2.2.0"
+slf4j = "2.0.9"
+junit = "4.13.2"
+timber = "5.0.1"
+fragmentTest = "1.8.5"
 
 [libraries]
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+annotations = { module = "org.jetbrains:annotations", version.ref = "annotations" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-viewmodel = { group = "io.insert-koin", name = "koin-core-viewmodel", version.ref = "koin" }
 constraint-layout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
-circle-image = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
@@ -40,18 +53,37 @@ okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver",
 square-okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptor" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+swipe-refresh = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swipeRefresh" }
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
-junit-test = { group = "junit", name = "junit", version.ref = "junit" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin" }
 koin-junit4 = { group = "io.insert-koin", name = "koin-test-junit4", version.ref = "koin" }
+room-test = { group = "androidx.room", name = "room-testing", version.ref = "room" }
+slf4j = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j"}
+junit = { group = "junit", name = "junit", version.ref = "junit" }
 
+androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "androidxArchCore" }
 android-test-runner = { group = "androidx.test", name = "runner", version.ref = "test_runner" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 core-ktx-android-test = { group = "androidx.test", name = "core-ktx", version.ref = "testCoreKtx" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+androidx-lifecycle-viewmodel-android = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-android", version.ref = "lifecycleViewmodelAndroid" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
+fragment-test = { group = "androidx.fragment", name = "fragment-testing", version.ref = "fragmentTest" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-parcelize = { id = "kotlin-parcelize" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+ksp = { id = "com.google.devtools.ksp" }

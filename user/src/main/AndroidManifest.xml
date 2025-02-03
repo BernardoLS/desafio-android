@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.picpay.desafio.android.user">
+
+<!--    <application>-->
+<!--        <activity-->
+<!--            android:name=".presentation.UserActivity"-->
+<!--            android:exported="false" />-->
+<!--    </application>-->
+
+</manifest>

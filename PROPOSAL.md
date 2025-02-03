@@ -1,11 +1,19 @@
 # Proposta de solução ao desafio
 
-## **Etapas**
+- Migrar o gradle para .kts para obter mais performance, clareza e segurança com tipagem e erros em 
+tempo de compilação. Usar o versionamento através do version catalog para maior organização.
+- Atualizar e otimizar as dependencias utilizadas no projeto.
+- Migrar a view para viewbinding e passar a utilizar o Single Activity Pattern, deixando o app 
+preparado para possível migração para compose no futuro.
+- Modularização para ganho de performance e otimização de build, além de maior organização caso o
+projeto cresça.
+- Utilização de Clean Architecture para maior escalabilidade e divisão de responsabilidade do código.
+- Utilização de MVI como pattern da camada de Presentation junto com StateFlow para gerenciamento 
+de estado
+- Implementar DI utilizando Koin.
+- Adicionar cobertura de testes unitarios para todos os niveis da arquitetura.
+- Adicionar testes instrumentados para assegurar que as views estão funcionando corretamente
+- Utilizar padrão Offline first, para cache persistente
 
-- Atualizar o gradle para rodar o projeto.
-- Migrar do synthetics para viewBind.
-- Migrar para version catalogs.
-- Atualizar dependencias
-- Modularizar
-- Criar estrutura da clean Architecture
-- 
+## **Etapas**
+- Implementar teste instrumentado

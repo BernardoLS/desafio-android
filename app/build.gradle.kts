@@ -2,12 +2,11 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
     namespace = "com.picpay.desafio.android"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.picpay.desafio.android"
@@ -17,13 +16,18 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
-        debug {}
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/\"")
+        }
 
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            buildConfigField("String", "BASE_URL", "\"https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -39,38 +43,36 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+
+    configurations {
+        create("cleanedAnnotations")
+        getByName("implementation").exclude(group = "org.jetbrains", module = "annotations")
     }
 
 }
 
 dependencies {
+    //modules
+    implementation(project(":core"))
+    implementation(project(":network"))
+    implementation(project(":database"))
+    implementation(project(":user"))
+
+    implementation(libs.annotations)
+    constraints {
+        implementation("com.intellij:annotations:12.0") {
+            because("Evitar conflito com org.jetbrains:annotations")
+        }
+    }
+    //libs
     implementation(libs.androidx.appcompat)
-    implementation(libs.core.ktx)
-    implementation(libs.koin.android)
-    implementation(libs.koin.core)
     implementation(libs.constraint.layout)
-    implementation(libs.picasso)
-    implementation(libs.circle.image)
-    implementation(libs.coroutine.core)
-    implementation(libs.coroutine.android)
-    implementation(libs.gson)
     implementation(libs.material)
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.gson)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.mockwebserver)
-    implementation(libs.square.okhttp.logging.interceptor)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.androidx.activity)
-
-    testImplementation(libs.junit.test)
-    testImplementation(libs.coroutine.test)
-    testImplementation(libs.koin.test)
-    testImplementation(libs.koin.junit4)
-
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(libs.core.ktx.android.test)
-    androidTestImplementation(platform(libs.android.test.runner))
+    implementation(libs.koin.android)
+    implementation(libs.coroutine.android)
 }

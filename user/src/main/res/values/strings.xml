@@ -1,0 +1,5 @@
+<resources>
+    <string name="user_avatar_description">Foto do contato</string>
+    <string name="error_state_title">Ocorreu um erro ao carregar seus contatos.</string>
+    <string name="error_state_button">Recarregar</string>
+</resources>
