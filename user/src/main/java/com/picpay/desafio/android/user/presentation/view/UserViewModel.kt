@@ -22,9 +22,9 @@ class UserViewModel(private val getUsersUseCase: FetchUserListUseCase) : ViewMod
     }
 
     private fun fetchUsers() {
-        _usersState.value = UserState.Loading
-
         viewModelScope.launch {
+            _usersState.value = UserState.Loading
+
             getUsersUseCase()
                 .catch { cause -> _usersState.value = UserState.Error(cause.message ?: "") }
                 .collect {

@@ -15,5 +15,3 @@ de estado
 - Adicionar testes instrumentados para assegurar que as views estão funcionando corretamente
 - Utilizar padrão Offline first, para cache persistente
 
-## **Etapas**
-- Implementar teste instrumentado

@@ -41,6 +41,7 @@ class UserListFragment : Fragment() {
         setUpAdapter()
         setUpStateObserver()
         setUpRefresh()
+
         viewModel.sendIntent(UserListIntents.LoadUsers)
     }
 
@@ -57,11 +58,9 @@ class UserListFragment : Fragment() {
 
                     is UserState.Success -> bindSuccessState(state.users)
 
-
                     is UserState.Error -> bindErrorState(state.message)
 
                 }
-
                 binding.swipeRefresh.isRefreshing = false
             }
         }
